@@ -25,7 +25,7 @@ import net.neoforged.fml.ModContainer;
 
 import java.util.concurrent.Executors;
 
-@Mod(value =  Main.MODID, dist = Dist.DEDICATED_SERVER)
+@Mod(value = Main.MODID, dist = Dist.DEDICATED_SERVER)
 public class Main {
     public static final String MODID = "mcdiscwbhk";
     public static final Logger LOGGER = LogUtils.getLogger();
