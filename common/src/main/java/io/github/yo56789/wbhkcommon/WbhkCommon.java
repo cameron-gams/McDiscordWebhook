@@ -4,14 +4,16 @@ import io.github.yo56789.wbhkcommon.config.Config;
 import io.github.yo56789.wbhkcommon.data.Colors;
 import org.jetbrains.annotations.Nullable;
 
-import java.nio.file.Path;
+import java.nio.file.Path;import java.util.concurrent.ExecutorService;
 
 public class WbhkCommon {
 
-    public static void init(@Nullable Path configPath) {
+    public static void init(@Nullable Path configPath, ExecutorService threadExecutor) {
         if (configPath != null) {
             Config.init(configPath);
         }
+
+        WebhookHandler.init(threadExecutor);
     }
 
     public static void chatMessageEvent(String messageContent, String senderName, String uuid) {

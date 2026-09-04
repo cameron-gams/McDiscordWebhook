@@ -22,6 +22,8 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
+import java.util.concurrent.Executors;
+
 @Mod(value = Main.MODID, dist = Dist.DEDICATED_SERVER)
 public class Main {
 
@@ -38,7 +40,7 @@ public class Main {
 
     @SubscribeEvent
     public void onCommonSetup(final FMLCommonSetupEvent event) {
-        WbhkCommon.init(null);
+        WbhkCommon.init(null, Executors.newVirtualThreadPerTaskExecutor());
 
         if (Config.EVENT_PLAYER_MESSAGE_ENABLED) {
             NeoForge.EVENT_BUS.addListener(Main::onPlayerMessage);

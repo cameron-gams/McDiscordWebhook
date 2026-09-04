@@ -7,15 +7,22 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.Objects;
+import java.util.concurrent.ExecutorService;
 import java.util.regex.Pattern;
 
 public class WebhookHandler {
-    private static HttpClient httpClient = HttpClient.newBuilder().build();
+    private static final Duration timeout = Duration.ofSeconds(15);
+    private static HttpClient httpClient;
 
     private static boolean warnedWebhookInvalid = false;
     private static final Pattern webhookRegexPattern = Pattern.compile("http.://discord\\.com/api/webhooks/.*/.*",
             Pattern.CASE_INSENSITIVE);
+
+    public static void init(ExecutorService threadExecutor) {
+        httpClient = HttpClient.newBuilder().executor(threadExecutor).build();
+    }
 
     public static String assembleMessage(String message, String username, int color) {
         if (message.isBlank()) {
@@ -68,6 +75,7 @@ public class WebhookHandler {
                 .uri(URI.create(uri))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(data))
+                .timeout(timeout)
                 .build();
         try {
             httpClient.sendAsync(request, HttpResponse.BodyHandlers.discarding());

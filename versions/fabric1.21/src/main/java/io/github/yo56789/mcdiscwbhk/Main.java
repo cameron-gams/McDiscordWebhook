@@ -16,13 +16,15 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.Executors;
+
 public class Main implements DedicatedServerModInitializer {
 	public static final String MODID = "mcdiscwbhk";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 
 	@Override
 	public void onInitializeServer() {
-		WbhkCommon.init(FabricLoader.getInstance().getConfigDir());
+		WbhkCommon.init(FabricLoader.getInstance().getConfigDir(), Executors.newVirtualThreadPerTaskExecutor());
 
 		if (Config.EVENT_PLAYER_MESSAGE_ENABLED) {
 			ServerMessageEvents.CHAT_MESSAGE.register((SignedMessage message, ServerPlayerEntity sender, MessageType.Parameters params) -> {
