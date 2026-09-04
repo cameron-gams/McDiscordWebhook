@@ -22,7 +22,7 @@ public class Main implements DedicatedServerModInitializer {
 
 	@Override
 	public void onInitializeServer() {
-		Config.init(FabricLoader.getInstance().getConfigDir());
+		WbhkCommon.init(FabricLoader.getInstance().getConfigDir());
 
 		if (Config.EVENT_PLAYER_MESSAGE_ENABLED) {
 			ServerMessageEvents.CHAT_MESSAGE.register((SignedMessage message, ServerPlayerEntity sender, MessageType.Parameters params) -> {
