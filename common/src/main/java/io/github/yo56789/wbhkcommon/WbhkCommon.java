@@ -4,7 +4,8 @@ import io.github.yo56789.wbhkcommon.config.Config;
 import io.github.yo56789.wbhkcommon.data.Colors;
 import org.jetbrains.annotations.Nullable;
 
-import java.nio.file.Path;import java.util.concurrent.ExecutorService;
+import java.nio.file.Path;
+import java.util.concurrent.ExecutorService;
 
 public class WbhkCommon {
 
