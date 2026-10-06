@@ -3,6 +3,7 @@ package io.github.yo56789.mcdiscwbhk;
 import io.github.yo56789.wbhkcommon.WbhkCommon;
 import io.github.yo56789.wbhkcommon.config.Config;
 import net.fabricmc.api.DedicatedServerModInitializer;
+import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
@@ -65,6 +66,14 @@ public class Main implements DedicatedServerModInitializer {
 		if (Config.EVENT_PLAYER_LEAVE_ENABLED) {
 			ServerPlayConnectionEvents.DISCONNECT.register((ServerPlayNetworkHandler handler, MinecraftServer server) -> {
 				WbhkCommon.playerLeaveEvent(handler.getPlayer().getName().getString());
+			});
+		}
+
+		if (Config.EVENT_PLAYER_DEATH_ENABLED) {
+			ServerLivingEntityEvents.AFTER_DEATH.register((entity, damageSource) -> {
+				if (entity instanceof ServerPlayerEntity player) {
+					WbhkCommon.playerDeathEvent(player.getName().getString());
+				}
 			});
 		}
 

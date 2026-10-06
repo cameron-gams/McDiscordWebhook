@@ -43,6 +43,8 @@ Modify these properties to suit your needs.
 ### Events
 All settings prefixed with `event-` are messages that get sent when an event is triggered. More information for each event is shown in the config file.
 
+Player deaths are posted when `event-player-death-enabled` is enabled. The message can be customized with `event-player-death-message`; `%s` is replaced with the player's username.
+
 ## Build
 Run these commands in order:
 ```bash
@@ -52,4 +54,3 @@ cd McDiscordWebhook
 ./gradlew build
 ```
 The completed mod file should be available in `target/`
-
