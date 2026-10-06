@@ -1,4 +1,5 @@
-# McDiscordWebhook
+# McDiscordWebhook fork
+i only care about 1.20.1
 
 McDiscordWebhook integrates your discord server into your minecraft without using a bot.
 
